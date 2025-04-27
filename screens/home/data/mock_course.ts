@@ -1,0 +1,1 @@
+export const COURSES = ["Figma", "React", "React Native", "Tailwind CSS", "TypeScript"];
