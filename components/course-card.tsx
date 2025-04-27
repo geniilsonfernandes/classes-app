@@ -27,7 +27,11 @@ export const CourseCard: React.FC<CourseCardProps> = ({
   originalPrice,
 }) => {
   return (
-    <Card>
+    <Card
+      style={{
+        marginHorizontal: sx.spacing.xl,
+      }}
+    >
       <CardImage uri={imageUri} />
       <CardContent>
         <Card style={styles.author}>

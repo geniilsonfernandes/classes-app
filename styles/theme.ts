@@ -16,6 +16,7 @@ export const theme = {
   card: {
     background: "#fff",
     foreground: "#302D2E",
+    shadow: "#302D2E10",
   },
   base: {
     background: "#F4F0EF",

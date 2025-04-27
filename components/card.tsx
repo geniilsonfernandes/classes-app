@@ -31,9 +31,17 @@ const CardContent: React.FC<{
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.card.background,
-    marginHorizontal: sx.spacing.xl,
     borderRadius: sx.rounded.xxl,
     padding: sx.spacing.md,
+    shadowColor: theme.card.shadow,
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+
+    elevation: 17,
   },
   image: {
     height: 150,

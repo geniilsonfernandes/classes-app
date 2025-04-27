@@ -2,12 +2,13 @@ import { sx } from "@/styles/styles";
 import { theme } from "@/styles/theme";
 import { Search } from "lucide-react-native";
 import React from "react";
-import { Platform, StyleSheet, TextInput, View } from "react-native";
+import { Platform, StyleSheet, TextInput } from "react-native";
+import { Card } from "./card";
 import { PressableIcon } from "./pressable-icon";
 
 export const SearchBar = () => {
   return (
-    <View style={styles.searchBar}>
+    <Card style={styles.searchBar}>
       <TextInput
         style={[
           styles.searchBarInput,
@@ -25,13 +26,12 @@ export const SearchBar = () => {
       <PressableIcon>
         <Search size={18} color={theme.gray[300]} />
       </PressableIcon>
-    </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   searchBar: {
-    backgroundColor: theme.input.background,
     borderRadius: sx.rounded.full,
     flexDirection: "row",
     alignItems: "center",
@@ -48,9 +48,5 @@ const styles = StyleSheet.create({
     fontSize: sx.font.lg,
     flex: 1,
     height: "100%",
-
-   
   },
-
-
 });
