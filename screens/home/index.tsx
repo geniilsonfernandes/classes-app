@@ -8,9 +8,11 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AppHeader } from "./components/app-header";
 import { HorizontalList } from "./components/horizontal-list";
+import { coursesMock } from "./data/mock_course";
 
 export function Home() {
   const [filterby, setFilterby] = useState<string>();
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -31,12 +33,13 @@ export function Home() {
             />
           </View>
         }
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
-        renderItem={() => <CourseCard />}
+        data={coursesMock}
+        contentContainerStyle={{ paddingBottom: sx.spacing.xl }}
+        renderItem={(item) => <CourseCard {...item.item} />}
         ItemSeparatorComponent={() => (
           <View style={{ height: sx.spacing.xl }} />
         )}
-        keyExtractor={(item) => item.toString()}
+        keyExtractor={(item) => item.id}
       />
     </SafeAreaView>
   );

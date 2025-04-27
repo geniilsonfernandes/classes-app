@@ -1,77 +1,64 @@
 import { sx } from "@/styles/styles";
-import { theme } from "@/styles/theme";
 import React from "react";
-import {
-    Image,
-    StyleProp,
-    StyleSheet,
-    View,
-    ViewStyle
-} from "react-native";
+import { StyleSheet } from "react-native";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Card, CardContent, CardImage } from "./card";
 import { Paragraph, Title } from "./text";
 
-type CardProps = {
-  children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
+type CourseCardProps = {
+  imageUri: string;
+  teacherName: string;
+  teacherAvatarUri: string;
+  title: string;
+  totalLessons: number;
+  totalHours: number;
+  price?: string;
+  originalPrice?: string;
 };
 
-const Card: React.FC<CardProps> = ({ children, style }) => {
-  return <View style={[styles.card, style]}>{children}</View>;
-};
-
-export const CourseCard = () => {
+export const CourseCard: React.FC<CourseCardProps> = ({
+  imageUri,
+  teacherName,
+  teacherAvatarUri,
+  title,
+  totalLessons,
+  totalHours,
+  price,
+  originalPrice,
+}) => {
   return (
     <Card>
-      <Image
-        source={{
-          uri: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        }}
-        style={styles.image}
-      />
-      <View style={styles.content}>
+      <CardImage uri={imageUri} />
+      <CardContent>
         <Card style={styles.author}>
           <Avatar style={styles.avatar}>
-            <AvatarImage
-              source={{
-                uri: "https://avatar.iran.liara.run/public/11",
-              }}
-            />
-            <AvatarFallback fallbackText="JD" />
+            <AvatarImage source={{ uri: teacherAvatarUri }} />
+            <AvatarFallback fallbackText={getInitials(teacherName)} />
           </Avatar>
-          <Paragraph>John Doe</Paragraph>
+          <Paragraph>{teacherName}</Paragraph>
         </Card>
-        <Card style={styles.price}>
-          <Paragraph opacity={0.5} decoration="line-through">
-            $20
-          </Paragraph>
-          <Paragraph>$9</Paragraph>
-        </Card>
-        <Title fontsize={sx.font.lg}>Figma for Designers</Title>
+
+        {(price || originalPrice) && (
+          <Card style={styles.price}>
+            {originalPrice && (
+              <Paragraph opacity={0.5} decoration="line-through">
+                {originalPrice}
+              </Paragraph>
+            )}
+            {price && <Paragraph>{price}</Paragraph>}
+          </Card>
+        )}
+
+        <Title fontsize={sx.font.lg}>{title}</Title>
         <Paragraph opacity={0.5} fontweight="400">
-          13 Lessons | 3 hours
+          {totalLessons} Lessons | {totalHours} hours
         </Paragraph>
-      </View>
+      </CardContent>
     </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    backgroundColor: theme.card.background,
-    marginHorizontal: sx.spacing.xl,
-    borderRadius: sx.rounded.xxl,
-    padding: sx.spacing.md,
-  },
-  image: {
-    height: 150,
-    resizeMode: "cover",
-    borderRadius: sx.rounded.xl,
-  },
-  content: {
-    padding: sx.spacing.md,
-    paddingTop: sx.spacing.xxxl,
-  },
   author: {
     flexDirection: "row",
     alignItems: "center",
@@ -98,3 +85,12 @@ const styles = StyleSheet.create({
     height: 20,
   },
 });
+
+// Função para pegar iniciais do nome
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+}
