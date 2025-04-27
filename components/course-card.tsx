@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     elevation: 8,
     gap: sx.spacing.md,
     zIndex: 10,
+    marginHorizontal: sx.spacing.md,
   },
   price: {
     flexDirection: "row",
@@ -80,9 +81,9 @@ const styles = StyleSheet.create({
     right: 0,
     top: -16,
     borderRadius: sx.rounded.full,
-    elevation: 8,
     gap: sx.spacing.sm,
     zIndex: 10,
+    marginHorizontal: sx.spacing.md,
   },
   avatar: {
     width: 20,
