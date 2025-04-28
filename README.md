@@ -1,50 +1,67 @@
-# Welcome to your Expo app 👋
+![cover](https://res.cloudinary.com/dbpayojb3/image/upload/v1745870147/portfolio/classes_cover.png)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Classes App - e-learning app | MVVM
 
-## Get started
+Classes is an e-learning app created with the goal of practicing tab and stack navigation, as well as practicing layout composition, component reuse, and chart creation.
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+## Features
 
-2. Start the app
+- **Modern UI**: Built with stylessheet
+- **state management**: Built with Zustand
+- **Animation**: Built with Reanimeted
 
-   ```bash
-    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
+## Screenshots
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Mobile Experience
 
-## Get a fresh project
+<video controls width="600">
+  <source src="https://res.cloudinary.com/dbpayojb3/video/upload/v1745869653/portfolio/classes.mp4" type="video/mp4">
+  Seu navegador não suporta a tag de vídeo.
+</video>
 
-When you're ready, run:
 
-```bash
-npm run reset-project
+<div style="display: flex; justify-content: space-between;">
+  <img src="assets/images/app-screenshots/mobile-1.png" alt="Mobile Dashboard" width="32%" />
+  <img src="assets/images/app-screenshots/mobile-2.png" alt="Mobile Analytics" width="32%" />
+  <img src="assets/images/app-screenshots/mobile-3.png" alt="Mobile Navigation" width="32%" />
+</div>
+
+## Project Structure
+
+```
+src/
+├── app/                 # Expo App Router
+│   ├── (tabs)/          # (tabs) routes
+|   └── layout.tsx       # Global layout
+├── components/          # Global components
+│   └── shared/          # Shared components
+├── screens/
+│   ├── course/          # course components
+│   │   ├── components/  # course UI components 
+│   │   └── hooks/       # course hooks
+│   │   └── types/       # course types
+|   |   └── index.tsx    # course page
+│   └── home/           #  home components and hooks etc.
+│       ├── components/ # home UI components
+│       └── hooks/      # home hooks
+│       └── index.tsx   # home page
+├── styles/             # Global styles
+├── lib/                # Utility functions
+└── store/              # Zustand store
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Tech Stack
 
-## Learn more
+- **Framework**: Expo with React
 
-To learn more about developing your project with Expo, look at the following resources:
+## Getting Started
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+First, run the development server:
 
-## Join the community
+```bash
+npm run android
+```
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
