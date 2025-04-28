@@ -1,8 +1,8 @@
 import { sx } from "@/styles/styles";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Card, CardContent, CardImage } from "./card";
+import { CourseMeta } from "./course-meta";
 import { Paragraph, Title } from "./text";
 
 type CourseCardProps = {
@@ -34,24 +34,12 @@ export const CourseCard: React.FC<CourseCardProps> = ({
     >
       <CardImage uri={imageUri} />
       <CardContent>
-        <Card style={styles.author}>
-          <Avatar style={styles.avatar}>
-            <AvatarImage source={{ uri: teacherAvatarUri }} />
-            <AvatarFallback fallbackText={getInitials(teacherName)} />
-          </Avatar>
-          <Paragraph>{teacherName}</Paragraph>
-        </Card>
-
-        {(price || originalPrice) && (
-          <Card style={styles.price}>
-            {originalPrice && (
-              <Paragraph opacity={0.5} decoration="line-through">
-                {originalPrice}
-              </Paragraph>
-            )}
-            {price && <Paragraph>{price}</Paragraph>}
-          </Card>
-        )}
+        <CourseMeta
+          teacherAvatarUri={teacherAvatarUri}
+          teacherName={teacherName}
+          price={price}
+          originalPrice={originalPrice}
+        />
 
         <Title fontsize={sx.font.lg}>{title}</Title>
         <Paragraph opacity={0.5} fontweight="400">

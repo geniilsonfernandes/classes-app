@@ -34,7 +34,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-      
+
         tabBarShowLabel: false,
         headerShadowVisible: false,
         tabBarActiveTintColor: theme.text.foreground,
@@ -74,6 +74,14 @@ export default function TabLayout() {
               <Home size={size} color={color} />
             </TabBarIcon>
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="(index)/course/[id]"
+        options={{
+          title: "Home",
+          href: null,
+          tabBarStyle: { display: "none" },
         }}
       />
       <Tabs.Screen

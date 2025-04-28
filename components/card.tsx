@@ -13,13 +13,14 @@ const Card: React.FC<CardProps> = ({ children, style }) => {
 
 const CardImage: React.FC<{
   uri: string;
-}> = ({ uri }) => {
+  height?: number;
+}> = ({ uri, height = 150 }) => {
   return (
     <Image
       source={{
         uri: uri,
       }}
-      style={styles.image}
+      style={[styles.image, { height }]}
     />
   );
 };
@@ -55,4 +56,3 @@ const styles = StyleSheet.create({
 });
 
 export { Card, CardContent, CardImage };
-

@@ -3,9 +3,9 @@ import { CourseCard } from "@/components/course-card";
 import { SearchBar } from "@/components/search-bar";
 import { sx } from "@/styles/styles";
 import { theme } from "@/styles/theme";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
-import { FlatList, StatusBar, StyleSheet, View } from "react-native";
+import { FlatList, Pressable, StatusBar, StyleSheet, View } from "react-native";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AppHeader } from "./components/app-header";
@@ -14,6 +14,7 @@ import { coursesMock } from "./data/mock_course";
 import { useCourses } from "./hooks/use-courses";
 
 export function Home() {
+  const router = useRouter();
   const navigation = useNavigation();
   const { courses, filterby, setFilterby, setSearch, search } = useCourses({
     initialCoursesFilter: coursesMock,
@@ -77,7 +78,15 @@ export function Home() {
         }
         data={courses}
         contentContainerStyle={{ paddingBottom: sx.spacing.xl }}
-        renderItem={(item) => <CourseCard {...item.item} />}
+        renderItem={(item) => (
+          <Pressable
+            onPress={() => {
+              router.push(`/course/${item.item.id}`);
+            }}
+          >
+            <CourseCard {...item.item} />
+          </Pressable>
+        )}
         ItemSeparatorComponent={() => (
           <View style={{ height: sx.spacing.xl }} />
         )}
