@@ -3,6 +3,7 @@ import { CourseCard } from "@/components/course-card";
 import { SearchBar } from "@/components/search-bar";
 import { sx } from "@/styles/styles";
 import { theme } from "@/styles/theme";
+import { useNavigation } from "expo-router";
 import { useState } from "react";
 import { FlatList, StatusBar, StyleSheet, View } from "react-native";
 import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
@@ -10,9 +11,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { AppHeader } from "./components/app-header";
 import { HorizontalList } from "./components/horizontal-list";
 import { coursesMock } from "./data/mock_course";
+import { useCourses } from "./hooks/use-courses";
 
 export function Home() {
-  const [filterby, setFilterby] = useState<string>();
+  const navigation = useNavigation();
+  const { courses, filterby, setFilterby, setSearch, search } = useCourses({
+    initialCoursesFilter: coursesMock,
+  });
   const [showFloatingFilters, setShowFloatingFilters] = useState(false);
 
   function handleScroll(event: any) {
@@ -21,6 +26,9 @@ export function Home() {
       // quando passar 100px de scroll
       setShowFloatingFilters(true);
     } else {
+      navigation.setOptions({
+        // tabBarStyle: { display: "flex", animated: true }, // Some a tab
+      });
       setShowFloatingFilters(false);
     }
   }
@@ -58,7 +66,7 @@ export function Home() {
           >
             <Container px="xl">
               <AppHeader />
-              <SearchBar />
+              <SearchBar search={search} setSearch={setSearch} />
             </Container>
             <HorizontalList
               style={styles.horizontalList}
@@ -67,7 +75,7 @@ export function Home() {
             />
           </View>
         }
-        data={coursesMock}
+        data={courses}
         contentContainerStyle={{ paddingBottom: sx.spacing.xl }}
         renderItem={(item) => <CourseCard {...item.item} />}
         ItemSeparatorComponent={() => (

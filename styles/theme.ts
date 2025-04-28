@@ -1,3 +1,5 @@
+import { sx } from "./styles";
+
 export const theme = {
   white: "#ffffff",
   black: "#000000",
@@ -16,14 +18,14 @@ export const theme = {
   card: {
     background: "#fff",
     foreground: "#302D2E",
-    shadow: "#302D2E10",
+    shadow: "#302D2E40",
   },
   base: {
     background: "#F4F0EF",
     foreground: "#302D2E",
   },
   accent: {
-    background: "#1e90ff",
+    background: "#302D2E",
     foreground: "#ffffff",
   },
   input: {
@@ -35,6 +37,17 @@ export const theme = {
     secondary: "#7A6461",
     foreground: "#302D2E",
   },
+  tabBar: {},
+};
+
+theme.tabBar = {
+  borderTopWidth: 0, // tira a linha
+  elevation: 0, // tira sombra Android
+  shadowOpacity: 0, // tira sombra iOS
+  backgroundColor: theme.card.background,
+  height: 80, // 👈 ajusta a altura que quiser
+  borderTopEndRadius: sx.rounded.xxl,
+  borderTopStartRadius: sx.rounded.xxl,
 };
 
 export const darkenHexColor = (hex: string, amount: number): string => {

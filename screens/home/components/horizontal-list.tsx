@@ -2,7 +2,7 @@ import { Chip } from "@/components/chip";
 import { sx } from "@/styles/styles";
 import React from "react";
 import { FlatList, StyleProp, ViewStyle } from "react-native";
-import { COURSES } from "../data/mock_course";
+import { filtersCourses } from "../data/filters";
 
 type Props = {
   filterby?: string;
@@ -17,9 +17,8 @@ export const HorizontalList: React.FC<Props> = ({
 }) => {
   return (
     <FlatList
-      data={COURSES}
+      data={filtersCourses}
       style={[style]}
-      
       horizontal
       keyExtractor={(item) => item}
       renderItem={({ item, index }) => (
@@ -29,7 +28,8 @@ export const HorizontalList: React.FC<Props> = ({
           }}
           style={{
             marginLeft: index === 0 ? sx.spacing.xl : 4,
-            marginRight: index === COURSES.length - 1 ? sx.spacing.xl : 4,
+            marginRight:
+              index === filtersCourses.length - 1 ? sx.spacing.xl : 4,
           }}
           variant={filterby === item ? "fill" : "light"}
           label={item}
@@ -37,7 +37,6 @@ export const HorizontalList: React.FC<Props> = ({
       )}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
-     
     />
   );
 };

@@ -1,15 +1,32 @@
 import { sx } from "@/styles/styles";
 import { theme } from "@/styles/theme";
 import { Search } from "lucide-react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Platform, StyleSheet, TextInput } from "react-native";
 import { Card } from "./card";
 import { PressableIcon } from "./pressable-icon";
 
-export const SearchBar = () => {
+type SearchBarProps = {
+  setSearch: (search: string) => void;
+  search: string;
+};
+
+export const SearchBar: React.FC<SearchBarProps> = ({ search, setSearch }) => {
+  const [input, setInput] = useState(search);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSearch(input); // Só dispara após o tempo de inatividade
+    }, 300); // 300ms de delay
+
+    return () => clearTimeout(timer); // limpa o timer se digitar de novo antes dos 300ms
+  }, [input]);
+
   return (
     <Card style={styles.searchBar}>
       <TextInput
+        value={input}
+        onChangeText={setInput}
         style={[
           styles.searchBarInput,
           Platform.OS === "web" && ({ outlineStyle: "none" } as any),
