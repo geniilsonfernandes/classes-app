@@ -12,6 +12,7 @@ type Props = {
   pl?: number;
   lineHeight?: number;
   color?: string;
+  ta?: "auto" | "left" | "right" | "center" | "justify";
 };
 
 const Title: React.FC<Props> = ({
@@ -22,16 +23,18 @@ const Title: React.FC<Props> = ({
   fontsize,
   pt,
   color,
+  ta,
 }) => {
   return (
     <Text
       style={{
         fontSize: fontsize ? fontsize : sx.font.xl,
         fontWeight: fontweight,
-        color: color ? color : theme.text.foreground,
+        color: color ? color : theme.text.secondary,
         opacity,
         textDecorationLine: decoration,
         marginTop: pt,
+        textAlign: ta,
       }}
     >
       {children}
@@ -49,6 +52,7 @@ const Paragraph: React.FC<Props> = ({
   pl,
   lineHeight,
   color,
+  ta,
 }) => {
   return (
     <Text
@@ -61,6 +65,7 @@ const Paragraph: React.FC<Props> = ({
         marginTop: pt,
         marginLeft: pl,
         lineHeight,
+        textAlign: ta,
       }}
     >
       {children}

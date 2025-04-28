@@ -40,6 +40,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: theme.text.foreground,
         animation: "fade",
         tabBarStyle: theme.tabBar,
+
         tabBarButton: (props) => {
           const {} = props;
           return (

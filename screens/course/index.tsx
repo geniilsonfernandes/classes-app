@@ -23,7 +23,12 @@ export default function CourseScreen() {
           paddingHorizontal: sx.spacing.xl,
         }}
       >
-        <Back />
+        <Back
+          style={{
+            position: "absolute",
+            left: 8,
+          }}
+        />
 
         <CourseHeader
           imageUri={data.imageUri}
